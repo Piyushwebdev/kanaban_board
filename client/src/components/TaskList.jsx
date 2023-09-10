@@ -15,7 +15,7 @@ import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { Typography } from "@mui/material";
-import Column from "./Column";
+import { Chip } from "@mui/material";
 const style = {
   position: "absolute",
   top: "50%",
@@ -28,18 +28,16 @@ const style = {
   p: 4,
 };
 
-const TaskList = () => {
+const TaskList = ({ setData, data, tasks, setTasks }) => {
   const [todoArr, setTodoArr] = useState([]);
   const [doingArr, setDoingArr] = useState([]);
   const [doneArr, setDoneArr] = useState([]);
-  const [data, setData] = useState([]);
   const [task, setTask] = useState({
     _id: "",
     title: "",
     description: "",
     status: "todo",
   });
-  const [tasks, setTasks] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditId, setShowEditId] = useState("");
@@ -178,17 +176,18 @@ const TaskList = () => {
   }, [todoArr, doingArr, doneArr]);
 
   return (
-    <div
-      className="task-list"
-      style={{ paddingInline: "2.5rem", paddingBlock: "1rem", flex: "9" }}
-    >
+    <div className="task-list" style={{ flex: "9" }}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <h3>Projects</h3>
       <Button
         variant="contained"
         onClick={() => setShowAddModal(true)}
-        sx={{ borderRadius: "50px" }}
+        sx={{ borderRadius: "50px", backgroundColor: "#754be5" }}
       >
         Create task
       </Button>
+      </div>
+     
       <Modal
         open={showAddModal}
         onClose={() => setShowAddModal(false)}
@@ -305,7 +304,9 @@ const TaskList = () => {
             display: "flex",
             justifyContent: "space-between",
             gap: "1.5rem",
-            marginTop: "1.5rem",
+            paddingInline: "1rem",
+            paddingBlock: "1rem",
+            backgroundColor: "#ffffff",
           }}
         >
           {data.map((column) => {
@@ -327,7 +328,7 @@ const TaskList = () => {
                   }}
                 >
                   {" "}
-                  <strong>{column.title}</strong>
+                  <strong style={{color:"#6f6a75"}}>{column.title}</strong>
                   <IconButton aria-label="delete">
                     <AddIcon onClick={() => setShowAddModal(true)} />
                   </IconButton>
@@ -337,7 +338,7 @@ const TaskList = () => {
                     <div
                       className="task-list"
                       style={{
-                        backgroundColor: "lightgrey",
+                        // backgroundColor: "#f5f5f8",
                         flex: "1",
                         minHeight: "73vh",
                         display: "flex",
@@ -365,14 +366,13 @@ const TaskList = () => {
 
                               <Card fullWidth sx={{ cursor: "pointer" }}>
                                 <CardContent>
-                                  <Typography variant="h5" component="div">
-                                    {task.title}
-                                  </Typography>
-                                  <Typography variant="body2">
+                                <Chip label={task?.title} sx={{textTransform:"capitalize",fontWeight:"600",backgroundColor:task.status==="todo"?"#ecf2ff":task.status==="doing"?"#ffefe1":"#f1ecff",color:task.status==="todo"?"#a58aef":task.status==="doing"?"#ee7714":"#a58aef"}}  />
+                                  <Typography variant="body2" sx={{marginTop:"0.5rem",color:"#bcbbbf",textTransform:"capitalize"}}>
                                     {task.description}
                                   </Typography>
                                 </CardContent>
-                                <CardActions>
+
+                                <CardActions sx={{ display: "block" }}>
                                   <Button
                                     size="small"
                                     onClick={() => handleClick(task)}
