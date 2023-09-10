@@ -103,6 +103,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
     } else {
       setDoneArr([{ ...task, status: "done" }, ...doneArr]);
     }
+  
   };
 
   function findItemById(id, array) {
@@ -172,7 +173,18 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
         tasks: doneArr,
       },
     ]);
-    console.log(todoArr, doingArr, doneArr);
+    // axios
+    // .post("http://localhost:3001/api/tasks", [
+    //   ...todoArr,
+    //   ...doingArr,
+    //   ...doneArr,
+    // ])
+    // .then((response) => {
+    //   fetchTasks();
+    // })
+    // .catch((error) => {
+    //   console.error("Error creating task:", error);
+    // });
   }, [todoArr, doingArr, doneArr]);
 
   return (
@@ -344,7 +356,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
                     <div
                       className="task-list"
                       style={{
-                        // backgroundColor: "#f5f5f8",
+                        gap: "1rem",
                         flex: "1",
                         minHeight: "73vh",
                         display: "flex",
@@ -367,11 +379,10 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
                               {...provided.dragHandleProps}
                               ref={provided.innerRef}
                               className="task-card"
-                             
                             >
                               {/* {task.title} */}
 
-                              <Card fullWidth sx={{ cursor: "pointer"}}>
+                              <Card fullWidth sx={{ cursor: "pointer" }}>
                                 <CardContent>
                                   <Chip
                                     label={task?.title}
@@ -409,7 +420,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
                                   </Typography>
                                 </CardContent>
 
-                                <CardActions >
+                                <CardActions>
                                   <Button
                                     size="small"
                                     onClick={() => handleClick(task)}

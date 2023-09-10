@@ -4,18 +4,18 @@ import DonutChart from "react-donut-chart";
 import Typography from "@mui/material/Typography";
 
 const TaskDashboard = ({ data, tasks }) => {
-  const [total, setTotal] = useState();
-  const [completed, setCompleted] = useState("");
-  const [inprogress, setInProgress] = useState("");
-  const [started, setStarted] = useState("");
-  const [percentage, setPercentage] = useState("");
+  const [total, setTotal] = useState(0);
+  const [completed, setCompleted] = useState(0);
+  const [inprogress, setInProgress] = useState(0);
+  const [started, setStarted] = useState(0);
+  const [percentage, setPercentage] = useState(0);
   useEffect(() => {
     setCompleted(data[0]?.tasks?.length);
     setInProgress(data[1]?.tasks?.length);
     setStarted(data[2]?.tasks?.length);
     setTotal(tasks?.length);
     setPercentage(Math.round((data[0]?.tasks?.length / tasks?.length) * 100));
-  }, []);
+  }, [data,tasks]);
 
   return (
     <div
@@ -56,7 +56,8 @@ const TaskDashboard = ({ data, tasks }) => {
             }}
             gutterBottom
           >
-            Total : <strong style={{ color: "#2e2932" }}>{total}</strong>
+            Total : 
+            <strong style={{ color: "#2e2932" }}>{total}</strong>
           </Typography>
         </CardContent>
       </Card>
