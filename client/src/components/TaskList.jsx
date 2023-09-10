@@ -177,17 +177,23 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
 
   return (
     <div className="task-list" style={{ flex: "9" }}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-        <h3>Projects</h3>
-      <Button
-        variant="contained"
-        onClick={() => setShowAddModal(true)}
-        sx={{ borderRadius: "50px", backgroundColor: "#754be5" }}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
       >
-        Create task
-      </Button>
+        <h3>Projects</h3>
+        <Button
+          variant="contained"
+          onClick={() => setShowAddModal(true)}
+          sx={{ borderRadius: "50px", backgroundColor: "#754be5" }}
+        >
+          Create task
+        </Button>
       </div>
-     
+
       <Modal
         open={showAddModal}
         onClose={() => setShowAddModal(false)}
@@ -328,7 +334,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
                   }}
                 >
                   {" "}
-                  <strong style={{color:"#6f6a75"}}>{column.title}</strong>
+                  <strong style={{ color: "#6f6a75" }}>{column.title}</strong>
                   <IconButton aria-label="delete">
                     <AddIcon onClick={() => setShowAddModal(true)} />
                   </IconButton>
@@ -361,18 +367,49 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
                               {...provided.dragHandleProps}
                               ref={provided.innerRef}
                               className="task-card"
+                             
                             >
                               {/* {task.title} */}
 
-                              <Card fullWidth sx={{ cursor: "pointer" }}>
+                              <Card fullWidth sx={{ cursor: "pointer"}}>
                                 <CardContent>
-                                <Chip label={task?.title} sx={{textTransform:"capitalize",fontWeight:"600",backgroundColor:task.status==="todo"?"#ecf2ff":task.status==="doing"?"#ffefe1":"#f1ecff",color:task.status==="todo"?"#a58aef":task.status==="doing"?"#ee7714":"#a58aef"}}  />
-                                  <Typography variant="body2" sx={{marginTop:"0.5rem",color:"#bcbbbf",textTransform:"capitalize"}}>
+                                  <Chip
+                                    label={task?.title}
+                                    sx={{
+                                      textTransform: "capitalize",
+                                      fontWeight: "600",
+                                      backgroundColor:
+                                        task.status === "todo"
+                                          ? "#ecf2ff"
+                                          : task.status === "doing"
+                                          ? "#ffefe1"
+                                          : "#f1ecff",
+                                      color:
+                                        task.status === "todo"
+                                          ? "#a58aef"
+                                          : task.status === "doing"
+                                          ? "#ee7714"
+                                          : "#a58aef",
+                                    }}
+                                  />
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      marginTop: "0.5rem",
+                                      color: "#bcbbbf",
+                                      textTransform: "capitalize",
+                                      textOverflow: "ellipsis",
+                                      wordWrap: "break-word",
+                                      overflow: "hidden",
+                                      maxHeight: "6rem",
+                                      lineHeight: "1.5rem",
+                                    }}
+                                  >
                                     {task.description}
                                   </Typography>
                                 </CardContent>
 
-                                <CardActions sx={{ display: "block" }}>
+                                <CardActions >
                                   <Button
                                     size="small"
                                     onClick={() => handleClick(task)}
