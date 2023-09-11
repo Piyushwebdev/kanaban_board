@@ -31,72 +31,89 @@ const TaskDashboard = ({ data, tasks }) => {
         height: "auto",
       }}
     >
-      <Card sx={{ backgroundColor: "#ecf2ff" }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 20, color: "#8763e9" }} gutterBottom>
-            Percentage :{" "}
-            <strong style={{ color: "#2e2932" }}>{percentage}</strong>
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card
-        sx={{
-          backgroundColor: "#ffefe1",
-          display: "flex",
-          alignItems: "center",
+      <div
+        style={{
+          backgroundColor: "#ecf2ff",
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+          paddingBlock: "1.3rem",
+          paddingInline: "1rem",
         }}
       >
-        <CardContent>
-          <Typography
-            sx={{
-              fontSize: 20,
-              color: "#f5a661",
-              display: "flex",
-              alignItems: "center",
-            }}
-            gutterBottom
-          >
-            Total :<strong style={{ color: "#2e2932" }}> {total}</strong>
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card sx={{ backgroundColor: "#f5a661" }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 20, color: "#ffffff" }} gutterBottom>
-            Completed :{" "}
-            <strong style={{ color: "#2e2932" }}>{completed}</strong>
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card
-        sx={{
-          backgroundColor: "#ffefe1",
-          display: "flex",
-          alignItems: "center",
+        <Typography sx={{ fontSize: 20, color: "#8763e9" }} gutterBottom>
+          Percentage :{" "}
+          <strong style={{ color: "#2e2932" }}>{percentage}</strong>
+        </Typography>
+      </div>
+      <div
+        style={{
+          backgroundColor: "#FFEFE1",
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+          paddingBlock: "1.3rem",
+          paddingInline: "1rem",
         }}
       >
-        <CardContent>
-          <Typography
-            sx={{
-              fontSize: 20,
-              color: "#f5a661",
-              display: "flex",
-              alignItems: "center",
-            }}
-            gutterBottom
-          >
-            In progress :{" "}
-            <strong style={{ color: "#2e2932" }}> {inprogress}</strong>
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card sx={{ backgroundColor: "#ecf2ff" }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 20, color: "#8763e9" }} gutterBottom>
-            Waiting : <strong style={{ color: "#2e2932" }}>{started}</strong>
-          </Typography>
-        </CardContent>
-      </Card>
+        <Typography
+          sx={{
+            fontSize: 20,
+            color: "#f5a661",
+            display: "flex",
+            alignItems: "center",
+          }}
+          gutterBottom
+        >
+          Total :<strong style={{ color: "#2e2932" }}> {total}</strong>
+        </Typography>
+      </div>
+      <div
+        style={{
+          backgroundColor: "#ecf2ff",
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+          paddingBlock: "1.3rem",
+          paddingInline: "1rem",
+        }}
+      >
+        <Typography sx={{ fontSize: 20, color: "#8763e9" }} gutterBottom>
+          Completed : <strong style={{ color: "#2e2932" }}>{completed}</strong>
+        </Typography>
+      </div>
+      <div
+        style={{
+          backgroundColor: "#FFEFE1",
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+          paddingBlock: "1.3rem",
+          paddingInline: "1rem",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: 20,
+            color: "#f5a661",
+            display: "flex",
+            alignItems: "center",
+          }}
+          gutterBottom
+        >
+          In progress :{" "}
+          <strong style={{ color: "#2e2932" }}> {inprogress}</strong>
+        </Typography>
+      </div>
+      <div
+        style={{
+          backgroundColor: "#ecf2ff",
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+          paddingBlock: "1.3rem",
+          paddingInline: "1rem",
+        }}
+      >
+        <Typography sx={{ fontSize: 20, color: "#8763e9" }} gutterBottom>
+          Waiting : <strong style={{ color: "#2e2932" }}>{started}</strong>
+        </Typography>
+      </div>
     </div>
   );
 };
