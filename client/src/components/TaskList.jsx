@@ -47,6 +47,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
     description: "",
     status: "todo",
   });
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,7 +67,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
     e.preventDefault();
     // Send a PUT request to update the task
     axios
-      .put(`http://localhost:3001/api/tasks/${showEditId}`, editTask)
+      .put(`http://localhost:3001/api/tasks1/${showEditId}`, editTask)
       .then((response) => {
         // Handle success, e.g., close the form or update the task list
         fetchTasks();
@@ -83,6 +84,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
   };
 
   const onDragEnd = (result) => {
+
     const { destination, source, draggableId } = result;
     console.log(destination, source, draggableId);
     if (source.droppableId == destination.droppableId) return;
@@ -103,6 +105,17 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
     } else {
       setDoneArr([{ ...task, status: "done" }, ...doneArr]);
     }
+
+    console.log(destination.droppableId==="1"?"todo":destination.droppableId==="2"?"doing":"done" )
+    axios.put(`http://localhost:3001/api/tasks/${draggableId}`, { status: destination.droppableId==="1"?"todo":destination.droppableId==="2"?"doing":"done" })
+    .then((response) => {
+      // Handle success
+      console.log('Task status updated successfully:', response.data);
+    })
+    .catch((error) => {
+      // Handle error
+      console.error('Error updating task status:', error);
+    });
   
   };
 
@@ -173,19 +186,23 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
         tasks: doneArr,
       },
     ]);
-    // axios
-    // .post("http://localhost:3001/api/tasks", [
-    //   ...todoArr,
-    //   ...doingArr,
-    //   ...doneArr,
-    // ])
-    // .then((response) => {
-    //   fetchTasks();
-    // })
-    // .catch((error) => {
-    //   console.error("Error creating task:", error);
-    // });
+ 
   }, [todoArr, doingArr, doneArr]);
+
+  // useEffect(()=>{
+  //      axios
+  //   .post("http://localhost:3001/api/tasks", [
+  //     ...todoArr,
+  //     ...doingArr,
+  //     ...doneArr,
+  //   ])
+  //   .then((response) => {
+  //     fetchTasks();
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error creating task:", error);
+  //   });
+  // },[data])
 
   return (
     <div className="task-list" style={{ flex: "9" }}>
@@ -196,7 +213,7 @@ const TaskList = ({ setData, data, tasks, setTasks }) => {
           alignItems: "center",
         }}
       >
-        <h3>Projects</h3>
+        <h2>Projects</h2>
         <Button
           variant="contained"
           onClick={() => setShowAddModal(true)}

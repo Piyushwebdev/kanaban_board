@@ -66,9 +66,9 @@ app.post('/api/tasks', async (req, res) => {
 });
 
 // Update an existing task
-app.put('/api/tasks/:id', async (req, res) => {
+app.put('/api/tasks1/:id', async (req, res) => {
   const taskId = req.params.id;
-    const { title, description, status } = req.body;
+    const { title,description,status } = req.body;
   try {
     const updatedTask = await Task.findByIdAndUpdate(taskId, { title, description, status }, { new: true });
     if (!updatedTask) {
@@ -78,6 +78,25 @@ app.put('/api/tasks/:id', async (req, res) => {
   } catch (err) {
     console.error('Error updating task:', err);
     res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Define a route to handle PUT requests for updating task status
+app.put('/api/tasks/:taskId', async (req, res) => {
+  const taskId = req.params.taskId;
+  const { status } = req.body;
+
+  try {
+    const task = await Task.findByIdAndUpdate(taskId, { status }, { new: true });
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    return res.status(200).json(task);
+  } catch (error) {
+    console.error('Error updating task:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 });
 
@@ -95,6 +114,10 @@ app.delete('/api/tasks/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+// Task.deleteMany({ }).then((result) => {
+//   console.log(result);
+// });
 
 // Start the Express server
 app.listen(port, () => {

@@ -10,24 +10,24 @@ const TaskDashboard = ({ data, tasks }) => {
   const [started, setStarted] = useState(0);
   const [percentage, setPercentage] = useState(0);
   useEffect(() => {
-    setCompleted(data[0]?.tasks?.length);
+    setCompleted(data[2]?.tasks?.length);
     setInProgress(data[1]?.tasks?.length);
-    setStarted(data[2]?.tasks?.length);
+    setStarted(data[0]?.tasks?.length);
     setTotal(tasks?.length);
-    setPercentage(Math.round((data[0]?.tasks?.length / tasks?.length) * 100));
-  }, [data,tasks]);
+    setPercentage(Math.round((data[2]?.tasks?.length / tasks?.length) * 100));
+  }, [data, tasks]);
 
   return (
     <div
       style={{
         flex: "1.5",
-        paddingBlock: "1.5rem",
+        paddingBlock: "3rem",
         gap: "1.5rem",
         paddingInline: "1rem",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#ffffff",
-        marginBlock: "4rem",
+        marginBlock: "4.5rem",
         height: "auto",
       }}
     >
@@ -56,8 +56,7 @@ const TaskDashboard = ({ data, tasks }) => {
             }}
             gutterBottom
           >
-            Total : 
-            <strong style={{ color: "#2e2932" }}>{total}</strong>
+            Total :<strong style={{ color: "#2e2932" }}> {total}</strong>
           </Typography>
         </CardContent>
       </Card>
@@ -87,7 +86,7 @@ const TaskDashboard = ({ data, tasks }) => {
             gutterBottom
           >
             In progress :{" "}
-            <strong style={{ color: "#2e2932" }}>{inprogress}</strong>
+            <strong style={{ color: "#2e2932" }}> {inprogress}</strong>
           </Typography>
         </CardContent>
       </Card>
